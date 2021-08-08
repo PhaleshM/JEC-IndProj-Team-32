@@ -5,8 +5,8 @@
 #include<sys/types.h>
 // To store address information
 #include<netinet/in.h>
-// #include <arpa/inet.h>	//inet_addr
-// #include <unistd.h>
+#include <arpa/inet.h>	//inet_addr
+#include <unistd.h>
 
 int main(){
     char server_message[256]="You have reached the server";

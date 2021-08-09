@@ -13,6 +13,11 @@ int main(){
 	// create a socket
 	int net_socket;
 	net_socket= socket(AF_INET,SOCK_STREAM,0);
+	
+	char *hello1 ="client1";
+	char *hello2 ="client2";
+	char *hello3 ="client3";
+	char *hello4 ="client4";
 
 	// specify an address for the socket
 	struct sockaddr_in server_address;
@@ -23,14 +28,24 @@ int main(){
 	// check for error with connection
 	if(connection_status==-1){
 		printf("There was an error making a connection to the remote socket \n\n");
+	}else{
+		printf("Connected\n");
 	}
+	char client_response[256];
+	int i=1;
+	do{
+	// send data from server
+	
+	send(net_socket,hello1,256,0);
+	printf("Sent hello %s\n",hello1);
 	// recieve data from server
-	char server_response[256];
-	recv(net_socket,&server_response,sizeof(server_response),0);
+	recv(net_socket,&client_response,sizeof(client_response),0);
 	// print out the a server's response
-	printf("The server set data: %s\n",server_response);
+	printf("Welcome from server, %s\n",client_response);
+	i++;
+	}while(i<=4);
 
 	// close the socket
-	pclose(net_socket);
+	// close(net_socket);
 	return 0;
 }
